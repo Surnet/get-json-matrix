@@ -3,7 +3,8 @@ import {getMatrix} from './get-matrix'
 
 async function run(): Promise<void> {
   try {
-    core.setOutput('matrix', getMatrix(core.getInput('filepath')))
+    const matrix = await getMatrix(core.getInput('filepath'))
+    core.setOutput('matrix', matrix)
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
   }

@@ -81,7 +81,8 @@ const get_matrix_1 = __nccwpck_require__(492);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            core.setOutput('matrix', (0, get_matrix_1.getMatrix)(core.getInput('filepath')));
+            const matrix = yield (0, get_matrix_1.getMatrix)(core.getInput('filepath'));
+            core.setOutput('matrix', matrix);
         }
         catch (error) {
             if (error instanceof Error)

@@ -1,6 +1,9 @@
 name: 'Get Matrix from JSON'
 description: 'Gets a GitHub Action Matrix array for every item in a JSON'
 author: 'Surnet'
+branding:
+  icon: 'shuffle'
+  color: 'orange'
 inputs:
   filepath:
     required: true
