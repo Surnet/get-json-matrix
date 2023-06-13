@@ -1,29 +1,20 @@
-import {wait} from '../src/wait'
+import {getMatrix} from '../src/get-matrix'
 import * as process from 'process'
 import * as cp from 'child_process'
 import * as path from 'path'
 import {expect, test} from '@jest/globals'
 
-test('throws invalid number', async () => {
-  const input = parseInt('foo', 10)
-  await expect(wait(input)).rejects.toThrow('milliseconds not a number')
+test('throws file not found', async () => {
+  await expect(getMatrix('./not-found.json')).rejects.toThrow('ENOENT: no such file or directory, open \'./not-found.json\'')
 })
 
-test('wait 500 ms', async () => {
-  const start = new Date()
-  await wait(500)
-  const end = new Date()
-  var delta = Math.abs(end.getTime() - start.getTime())
-  expect(delta).toBeGreaterThan(450)
-})
-
-// shows how the runner will run a javascript action with env / stdout protocol
-test('test runs', () => {
-  process.env['INPUT_MILLISECONDS'] = '500'
-  const np = process.execPath
-  const ip = path.join(__dirname, '..', 'lib', 'main.js')
-  const options: cp.ExecFileSyncOptions = {
-    env: process.env
-  }
-  console.log(cp.execFileSync(np, [ip], options).toString())
+test('returns expected result', async () => {
+  const matrix = await getMatrix('./__tests__/sample.json');
+  await expect(matrix).toEqual({
+    include: [
+      { key: 'key1', value: 'value1' },
+      { key: 'key2', value: 'value2' },
+      { key: 'key3', value: 'value3' }
+    ]
+  })
 })

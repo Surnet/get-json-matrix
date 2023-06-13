@@ -1,11 +1,14 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Get Matrix from JSON'
+description: 'Gets a GitHub Action Matrix array for every item in a JSON'
+author: 'Surnet'
 inputs:
-  milliseconds: # change this
+  filepath:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'Path to the JSON file'
+    default: './matrix.json'
+outputs:
+  matrix:
+    description: 'GitHub Action Matrix'
 runs:
-  using: 'node16'
+  using: 'node18'
   main: 'dist/index.js'
