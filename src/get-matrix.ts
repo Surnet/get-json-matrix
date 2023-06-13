@@ -1,9 +1,10 @@
-import {readFileSync} from 'fs'
+import {readFile} from 'fs/promises'
 
 export async function getMatrix(
   filePath: string
 ): Promise<{include: {key: string; value: unknown}[]}> {
-  const object = JSON.parse(readFileSync(filePath).toString())
+  const fileContent = await readFile(filePath)
+  const object = JSON.parse(fileContent.toString())
   const matrix = {
     include: [] as {key: string; value: unknown}[]
   }

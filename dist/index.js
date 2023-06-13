@@ -17,10 +17,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getMatrix = void 0;
-const fs_1 = __nccwpck_require__(147);
+const promises_1 = __nccwpck_require__(292);
 function getMatrix(filePath) {
     return __awaiter(this, void 0, void 0, function* () {
-        const object = JSON.parse((0, fs_1.readFileSync)(filePath).toString());
+        const fileContent = yield (0, promises_1.readFile)(filePath);
+        const object = JSON.parse(fileContent.toString());
         const matrix = {
             include: []
         };
@@ -2811,6 +2812,14 @@ module.exports = require("events");
 
 "use strict";
 module.exports = require("fs");
+
+/***/ }),
+
+/***/ 292:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("fs/promises");
 
 /***/ }),
 
