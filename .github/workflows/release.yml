@@ -51,7 +51,9 @@ jobs:
           # This token is provided by Actions, you do not need to create your own token
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create ${TAG_NAME} -t "${TAG_NAME/refs\/tags\//}" --notes "${TAG_BODY} --draft"
+          if [[ $(gh release view ${TAG_NAME/refs\/tags\//} 2>&1) == *"release not found"* ]]; then
+            gh release create ${TAG_NAME} -t "${TAG_NAME/refs\/tags\//}" --notes "${TAG_BODY} --draft"
+          fi
 
   release-check:
     if: github.event.action == 'labeled'
