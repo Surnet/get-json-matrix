@@ -1,17 +1,11 @@
 name: release
 on:
   push:
-    branches:
-      - main
     tags:
       - 'v*.*.*'
-  pull_request:
-    types:
-      - labeled
 
 jobs:
   release:
-    if: github.event.action != 'labeled'
     permissions:
       contents: write
     runs-on: ubuntu-latest
@@ -52,13 +46,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [[ $(gh release view ${TAG_NAME/refs\/tags\//} 2>&1) == *"release not found"* ]]; then
-            gh release create ${TAG_NAME} -t "${TAG_NAME/refs\/tags\//}" --notes "${TAG_BODY} --draft"
+            gh release create ${TAG_NAME} -t "${TAG_NAME/refs\/tags\//}" --notes "${TAG_BODY}"
           fi
-
-  release-check:
-    if: github.event.action == 'labeled'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Post bumpr status comment
-        uses: haya14busa/action-bumpr@v1
