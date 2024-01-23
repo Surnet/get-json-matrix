@@ -1,6 +1,6 @@
 {
   "name": "get-json-matrix",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Gets a GitHub Action Matrix array for every item in a JSON",
   "main": "lib/main.js",
@@ -27,12 +27,12 @@
   "author": "Surnet",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "1.10.0"
+    "@actions/core": "1.10.1"
   },
   "devDependencies": {
     "@types/node": "20.11.5",
-    "@typescript-eslint/parser": "6.19.0",
-    "@vercel/ncc": "0.38.0",
+    "@typescript-eslint/parser": "6.19.1",
+    "@vercel/ncc": "0.38.1",
     "eslint": "8.56.0",
     "eslint-plugin-github": "4.10.1",
     "eslint-plugin-jest": "27.6.3",
