@@ -1,6 +1,6 @@
 {
   "name": "get-json-matrix",
-  "version": "1.0.8",
+  "version": "2.0.0",
   "private": true,
   "description": "Gets a GitHub Action Matrix array for every item in a JSON",
   "main": "lib/main.js",

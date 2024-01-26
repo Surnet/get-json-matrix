@@ -13,5 +13,5 @@ outputs:
   matrix:
     description: 'GitHub Action Matrix'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
